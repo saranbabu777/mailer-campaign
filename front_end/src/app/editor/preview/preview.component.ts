@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SectionProps } from 'src/app/editor/models/section-props';
+import { TemplateService } from 'src/app/editor/services/template.service';
 
 @Component({
   selector: 'app-preview',
@@ -8,9 +9,11 @@ import { SectionProps } from 'src/app/editor/models/section-props';
 })
 export class PreviewComponent implements OnInit {
 
+  @Input() public hideBtn: boolean;
+  public showLoader: boolean;
   public template: SectionProps[];
 
-  constructor() {
+  constructor(private templateService: TemplateService) {
     this.template = []; /*Do API Call*/
     const sections = [
       {
@@ -96,4 +99,11 @@ export class PreviewComponent implements OnInit {
   ngOnInit() {
   }
 
+  generateTemplate() {
+    this.showLoader = true;
+    this.templateService.generateTemplate().then((response) => {
+      this.showLoader = false;
+      console.log(response)
+    })
+  }
 }

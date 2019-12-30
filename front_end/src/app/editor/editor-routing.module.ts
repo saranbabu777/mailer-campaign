@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditorComponent } from 'src/app/editor/editor/editor.component';
 import { Template1Component } from './views/template1/template1.component';
 import { DesignComponent } from 'src/app/editor/design/design.component';
+import { PreviewComponent } from 'src/app/editor/preview/preview.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,10 @@ const routes: Routes = [
                 component: DesignComponent
             }
         ]
+    },
+    {
+        path: 'preview/:id',
+        component: PreviewComponent
     }
 ];
 

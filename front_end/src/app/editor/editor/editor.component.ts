@@ -47,7 +47,7 @@ export class EditorComponent implements OnInit {
       console.log(response);
     }).catch(() => {
       localStorage.setItem('request', JSON.stringify(request));
-      this.router.navigate([ '/preview/email/preview/0' ]);
+      this.router.navigate([ '/editor/preview/0' ]);
     });
   }
 
@@ -61,7 +61,8 @@ export class EditorComponent implements OnInit {
       console.log(response);
       this.router.navigate([ '/preview/email/template1/' + response[ 'templateId' ] ]);
     }).catch(() => {
-      this.router.navigate([ '/preview/email/template1/1' ]);
+      localStorage.setItem('request', JSON.stringify(request));
+      this.router.navigate([ '/editor/preview/0' ]);
     });
   }
 

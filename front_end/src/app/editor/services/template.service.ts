@@ -9,7 +9,7 @@ export class TemplateService {
 
   private baseUrl = "http://localhost:8200/";
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
   }
 
@@ -25,12 +25,18 @@ export class TemplateService {
     const url = this.getUri('emails/getTemplate/');
 
     this.http
-      .get(url+request, this.getOptions())
-      .toPromise().then(response =>{
-        console.log('json poutpu ',response)
+      .get(url + request, this.getOptions())
+      .toPromise().then(response => {
+        console.log('json output ', response)
       })
   }
 
+  generateTemplate() {
+    const url = "http://localhost:3000/";
+    return this.http
+      .get(url, this.getOptions())
+      .toPromise();
+  }
 
   private getHeaders(obj?: any): HttpHeaders {
     const headers = new HttpHeaders();
