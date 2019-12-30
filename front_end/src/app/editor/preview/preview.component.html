@@ -1,0 +1,6 @@
+<div class="preview-container">
+    <div *ngFor="let section of template; let i=index;">
+        <ng-container dynamicElement [section]="section" [i]="i" [editing]="false">
+        </ng-container>
+    </div>
+</div>

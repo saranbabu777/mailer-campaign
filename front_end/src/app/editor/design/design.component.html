@@ -1,0 +1,21 @@
+<div class="design-outer">
+    <div class="drag-container design-container">
+        <b>Design Elements</b>
+        <div fxLayout="column" fxLayoutAlign="center center" cdkDropList #todoList="cdkDropList" [cdkDropListData]="elements" [cdkDropListConnectedTo]="[doneList]"
+            class="drag-list">
+            <div class="drag-box design-element" *ngFor="let item of elements" cdkDrag>
+                <fa name="{{icons[item.type]}}"></fa>
+                <span>{{item.type}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="drag-container template-container">
+        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="template" [cdkDropListConnectedTo]="[todoList]" class="drag-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="drag-box" *ngFor="let section of template; let i=index;" cdkDrag>
+                <ng-container dynamicElement [section]="section" [i]="i" [editing]="index === i">
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
