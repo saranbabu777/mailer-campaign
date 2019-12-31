@@ -8,14 +8,39 @@
                 <span>{{item.type}}</span>
             </div>
         </div>
+        <div class="merge-container">
+            <mat-form-field appearance="outline" [floatLabel]="'always'">
+                <mat-label>Row</mat-label>
+                <mat-select [(ngModel)]="a">
+                    <mat-option *ngFor="let i of rows" [value]="i">
+                        {{i+1}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" [floatLabel]="'always'">
+                <mat-label>Row</mat-label>
+                <mat-select [(ngModel)]="b">
+                    <mat-option *ngFor="let i of rows" [value]="i">
+                        {{i+1}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="button" (click)="merge()">Merge</button>
+        </div>
     </div>
     <div class="drag-container template-container">
         <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="template" [cdkDropListConnectedTo]="[todoList]" class="drag-list"
             (cdkDropListDropped)="drop($event)">
-            <div class="drag-box" *ngFor="let section of template; let i=index;" cdkDrag>
-                <ng-container dynamicElement [section]="section" [i]="i" [editing]="index === i">
-                </ng-container>
-            </div>
+            <table *ngFor="let row of rows; " cdkDrag>
+                <tr>
+                    <td *ngFor="let section of template | filterRow:row; let col=index;">
+                        <div class="drag-box">
+                            <ng-container dynamicElement [section]="section" [i]="section.index" [editing]="selectedCell === (row+''+col)">
+                            </ng-container>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

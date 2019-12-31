@@ -14,6 +14,7 @@ import { TextComponent } from './design/components/text/text.component';
 import { ButtonComponent } from './design/components/button/button.component';
 import { DynamicElementDirective } from './design/components/dynamic-element/dynamic-element.directive';
 import { PreviewComponent } from './preview/preview.component';
+import { FilterRowPipe } from './pipes/filter-row.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PreviewComponent } from './preview/preview.component';
     TextComponent,
     ButtonComponent,
     DynamicElementDirective,
-    PreviewComponent
+    PreviewComponent,
+    FilterRowPipe
   ],
   imports: [
     CommonModule,

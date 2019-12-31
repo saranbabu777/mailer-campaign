@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class TemplatePlaceholdersService {
 
   public sections: Subject<SectionProps[]> = new Subject<SectionProps[]>();
-  public index: Subject<number> = new Subject<number>();
+  public index: Subject<any> = new Subject<any>();
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class TemplatePlaceholdersService {
     return this.sections.asObservable();
   }
 
-  getIndex(): Observable<number> {
+  getIndex(): Observable<any> {
     return this.index.asObservable();
   }
 }

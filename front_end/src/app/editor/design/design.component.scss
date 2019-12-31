@@ -102,4 +102,12 @@
   ::ng-deep .editing {
     border: 2px dashed #DD9700;
   }
+  table {
+    width: 100%;
+  }
+}
+.merge-container {
+  ::ng-deep .mat-form-field {
+    width: 100px;
+  }
 }

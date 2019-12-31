@@ -11,7 +11,8 @@ import { TemplatePlaceholdersService } from 'src/app/editor/services/template-pl
 export class DesignComponent implements OnInit {
 
   public template: SectionProps[];
-  public index: number;
+  public selectedCell: string;
+  public rows: number[];
   public icons = { image: 'image', text: 'file-text', button: 'square' };
   public elements = [
     {
@@ -50,7 +51,7 @@ export class DesignComponent implements OnInit {
     this.template = []; /*Empty template*/
     this.templatePlaceholdersService.sections.next(this.template);
     this.templatePlaceholdersService.getIndex().subscribe(response => {
-      this.index = response;
+      this.selectCell(response);
     });
   }
 
@@ -58,12 +59,73 @@ export class DesignComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer !== event.container) {
-      const clone = JSON.parse(JSON.stringify(event.previousContainer.data[ event.previousIndex ]));
+      let clone = JSON.parse(JSON.stringify(event.previousContainer.data[ event.previousIndex ]));
       event.container.data.splice(event.currentIndex, 0, clone);// Add the clone to the new array.
-      this.index = event.currentIndex;
+      this.generateId();
       this.templatePlaceholdersService.sections.next(this.template);
-      this.templatePlaceholdersService.index.next(this.index);
+      this.templatePlaceholdersService.index.next(event.currentIndex);
     }
   }
 
+  generateId() {
+    let id = null;
+    let previousId = null;
+    let max = 0;
+    const arrayLength = this.template.length;
+    for (let i = 0; i < arrayLength; i++) {
+      let t = this.template[ i ];
+      if (t.gid === undefined) {
+        id = (previousId !== null) ? (previousId + 1) : i;
+        t.gid = id;
+      } else {
+        if (id !== null && t.gid >= id) {
+          t.gid += 1;
+        }
+      }
+      previousId = t.gid;
+      max = t.gid > max ? t.gid : max;
+      t.index = i;
+    }
+    this.rows = [];
+    for (let i = 0; i <= max; i++) {
+      this.rows.push(i);
+    }
+  }
+
+  selectCell(index) {
+    const arrayLength = this.template.length;
+    let col = 0;
+    let row;
+    for (let i = 0; i < arrayLength; i++) {
+      let t = this.template[ i ];
+      if (i === index) {
+        row = t.gid;
+      }
+    }
+    for (let i = 0; i < arrayLength; i++) {
+      if (i === index) break;
+      let t = this.template[ i ];
+      if (t.gid === row) {
+        col++;
+      }
+    }
+    this.selectedCell = row + '' + col;
+  }
+
+  a; b;
+  merge() {
+    this.a = parseInt(this.a);
+    this.b = parseInt(this.b);
+    if (this.a < this.b) {
+      for (let i = 0; i < this.template.length; i++) {
+        let t = this.template[ i ];
+        if (t.gid === this.b) {
+          t.gid = this.a;
+        } else if (t.gid > this.b) {
+          t.gid--;
+        }
+      }
+      this.rows.pop(); /*Pop out one row*/
+    }
+  }
 }

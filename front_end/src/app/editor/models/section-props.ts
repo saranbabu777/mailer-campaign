@@ -4,6 +4,8 @@ export class SectionProps {
     style?: Style;
     link?: string;
     url?: any;
+    gid?: number;
+    index?: number;
 }
 
 export class Style {
