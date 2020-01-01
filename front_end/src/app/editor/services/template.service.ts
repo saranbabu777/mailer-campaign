@@ -34,7 +34,7 @@ export class TemplateService {
   generateTemplate() {
     const url = "http://localhost:3000/";
     return this.http
-      .get(url, this.getOptions())
+      .get(url)
       .toPromise();
   }
 

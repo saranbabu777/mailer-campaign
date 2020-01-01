@@ -10,7 +10,8 @@
     border: 2px dashed #90c9e4;
     vertical-align: top;
     .drag-list {
-      min-height: 395px;
+      height: calc(100vh - 70px);
+      overflow-y: auto;
     }
   }
 

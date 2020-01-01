@@ -12,6 +12,7 @@ export class PreviewComponent implements OnInit {
   @Input() public hideBtn: boolean;
   public showLoader: boolean;
   public template: SectionProps[];
+  public rows: number[];
 
   constructor(private templateService: TemplateService) {
     this.template = []; /*Do API Call*/
@@ -94,6 +95,8 @@ export class PreviewComponent implements OnInit {
       /*Load sample data if no request*/
       this.template = sections;
     }
+    /*Do this after API call*/
+    this.generateRows();
   }
 
   ngOnInit() {
@@ -105,5 +108,18 @@ export class PreviewComponent implements OnInit {
       this.showLoader = false;
       console.log(response)
     })
+  }
+
+  generateRows() {
+    this.rows = [];
+    let max = 0;
+    const arrayLength = this.template.length;
+    for (let i = 0; i < arrayLength; i++) {
+      let t = this.template[ i ];
+      max = t.gid > max ? t.gid : max;
+    }
+    for (let i = 0; i <= max; i++) {
+      this.rows.push(i);
+    }
   }
 }
