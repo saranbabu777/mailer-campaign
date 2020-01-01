@@ -9,8 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:email": "ng build --extract-css --project email && ng run email:server",
-    "gen:email": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/4",
-    "export:email": "npm run build:email && npm run gen:email"
+    "gen:email": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/4"
   },
   "private": true,
   "dependencies": {

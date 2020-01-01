@@ -32,7 +32,7 @@ export class TemplateService {
   }
 
   generateTemplate() {
-    const url = "http://localhost:3000/";
+    const url = "http://localhost:3000/email";
     return this.http
       .get(url)
       .toPromise();

@@ -7,13 +7,11 @@ const child_process = require('child_process')
 
 app.use(cors())
 
-app.get('/', (req, res) => {
-	child_process.exec('cd.. && cd.. && cd mailer-campaign && cd front_end && npm run build:email', function (error, stdout, stderr) {
-		console.log('build success!')
-		child_process.exec('cd.. && cd.. && cd mailer-campaign && cd front_end && generate-email.bat', function (error, stdout, stderr) {
-			console.log('gen success!')
-			res.json({ msg: 'Email generated successfully!' })
-		});
+/*RUN build:email before calling api*/
+app.get('/email', (req, res) => {
+	child_process.exec('cd.. && cd.. && cd mailer-campaign && cd front_end && generate-email.bat', function (error, stdout, stderr) {
+		console.log('gen success!')
+		res.json({ msg: 'Email generated successfully!' })
 	});
 })
 

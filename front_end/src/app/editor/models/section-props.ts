@@ -4,7 +4,7 @@ export class SectionProps {
     style?: Style;
     link?: string;
     url?: any;
-    gid?: number;
+    rowId?: number;
     index?: number;
 }
 

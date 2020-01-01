@@ -18,6 +18,7 @@ export class EditorComponent implements OnInit {
   public fontWeight: string[];
   public fileData: File = null;
   public uploadedFilePath: string = null;
+  private previewUrl: string;
 
   constructor(private templatePlaceholdersService: TemplatePlaceholdersService, private templateService: TemplateService,
     private router: Router) {
@@ -34,6 +35,8 @@ export class EditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    const designView = this.router.url.split('/').indexOf('design') !== -1;
+    this.previewUrl = designView ? "/editor/preview/" : "/preview/email/template1/";
   }
 
   submit() {
@@ -43,11 +46,10 @@ export class EditorComponent implements OnInit {
       userName: 'saran'
     }
     this.templateService.saveTemplate(request).then(response => {
-      this.router.navigate([ '/preview/email/template1/' + response[ 'templateId' ] ]);
-      console.log(response);
+      this.router.navigate([ this.previewUrl + response[ 'templateId' ] ]);
     }).catch(() => {
       localStorage.setItem('request', JSON.stringify(request));
-      this.router.navigate([ '/editor/preview/0' ]);
+      this.router.navigate([ this.previewUrl + '0' ]);
     });
   }
 
@@ -58,11 +60,10 @@ export class EditorComponent implements OnInit {
       userName: 'saran'
     }
     this.templateService.saveTemplate(request).then(response => {
-      console.log(response);
-      this.router.navigate([ '/preview/email/template1/' + response[ 'templateId' ] ]);
+      this.router.navigate([ this.previewUrl + response[ 'templateId' ] ]);
     }).catch(() => {
       localStorage.setItem('request', JSON.stringify(request));
-      this.router.navigate([ '/editor/preview/0' ]);
+      this.router.navigate([ this.previewUrl + '0' ]);
     });
   }
 

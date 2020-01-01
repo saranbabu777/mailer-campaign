@@ -74,16 +74,16 @@ export class DesignComponent implements OnInit {
     const arrayLength = this.template.length;
     for (let i = 0; i < arrayLength; i++) {
       let t = this.template[ i ];
-      if (t.gid === undefined) {
+      if (t.rowId === undefined) {
         id = (previousId !== null) ? (previousId + 1) : i;
-        t.gid = id;
+        t.rowId = id;
       } else {
-        if (id !== null && t.gid >= id) {
-          t.gid += 1;
+        if (id !== null && t.rowId >= id) {
+          t.rowId += 1;
         }
       }
-      previousId = t.gid;
-      max = t.gid > max ? t.gid : max;
+      previousId = t.rowId;
+      max = t.rowId > max ? t.rowId : max;
       t.index = i;
     }
     this.rows = [];
@@ -99,13 +99,13 @@ export class DesignComponent implements OnInit {
     for (let i = 0; i < arrayLength; i++) {
       let t = this.template[ i ];
       if (i === index) {
-        row = t.gid;
+        row = t.rowId;
       }
     }
     for (let i = 0; i < arrayLength; i++) {
       if (i === index) break;
       let t = this.template[ i ];
-      if (t.gid === row) {
+      if (t.rowId === row) {
         col++;
       }
     }
@@ -119,10 +119,10 @@ export class DesignComponent implements OnInit {
     if (this.a < this.b) {
       for (let i = 0; i < this.template.length; i++) {
         let t = this.template[ i ];
-        if (t.gid === this.b) {
-          t.gid = this.a;
-        } else if (t.gid > this.b) {
-          t.gid--;
+        if (t.rowId === this.b) {
+          t.rowId = this.a;
+        } else if (t.rowId > this.b) {
+          t.rowId--;
         }
       }
       this.rows.pop(); /*Pop out one row*/

@@ -25,7 +25,9 @@ export class PreviewComponent implements OnInit {
           fontColor: '',
           backgroundColor: '',
           fontWeight: ''
-        }
+        },
+        rowId: 0,
+        index: 0
       },
       {
         type: 'text',
@@ -35,7 +37,9 @@ export class PreviewComponent implements OnInit {
           fontColor: '',
           backgroundColor: '',
           fontWeight: ''
-        }
+        },
+        rowId: 1,
+        index: 1
       },
       {
         type: 'text',
@@ -45,7 +49,9 @@ export class PreviewComponent implements OnInit {
           fontColor: '',
           backgroundColor: '',
           fontWeight: ''
-        }
+        },
+        rowId: 2,
+        index: 2
       },
       {
         type: 'text',
@@ -55,7 +61,9 @@ export class PreviewComponent implements OnInit {
           fontColor: '',
           backgroundColor: '',
           fontWeight: ''
-        }
+        },
+        rowId: 3,
+        index: 3
       },
       {
         type: 'text',
@@ -65,7 +73,9 @@ export class PreviewComponent implements OnInit {
           fontColor: '',
           backgroundColor: '',
           fontWeight: ''
-        }
+        },
+        rowId: 4,
+        index: 4
       },
       {
         type: 'button',
@@ -75,7 +85,9 @@ export class PreviewComponent implements OnInit {
           fontColor: '',
           backgroundColor: '',
           fontWeight: ''
-        }
+        },
+        rowId: 5,
+        index: 5
       },
       {
         type: 'button',
@@ -85,7 +97,9 @@ export class PreviewComponent implements OnInit {
           fontColor: '',
           backgroundColor: '',
           fontWeight: ''
-        }
+        },
+        rowId: 6,
+        index: 6
       }
     ];
     try {
@@ -116,7 +130,7 @@ export class PreviewComponent implements OnInit {
     const arrayLength = this.template.length;
     for (let i = 0; i < arrayLength; i++) {
       let t = this.template[ i ];
-      max = t.gid > max ? t.gid : max;
+      max = t.rowId > max ? t.rowId : max;
     }
     for (let i = 0; i <= max; i++) {
       this.rows.push(i);

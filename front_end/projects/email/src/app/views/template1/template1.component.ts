@@ -17,72 +17,78 @@ export class Template1Component implements OnInit {
       this.lookupService.getTemplate(response.id).then(response => {
         this.sections = JSON.parse(response[ 'sections' ]);
       }).catch(() => {
-        /*STUB DATA IF NO API*/
-        this.sections = [
-          {
-            url: 'assets/img/ecart-logo.PNG',
-            style: {
-              fontSize: '',
-              fontColor: '',
-              backgroundColor: '',
-              fontWeight: ''
+        try {
+          const request = JSON.parse(localStorage.getItem('request'));
+          this.sections = JSON.parse(request.sections)
+        } catch (e) {
+          /*STUB DATA IF NO API*/
+          const sections = [
+            {
+              url: 'assets/img/ecart-logo.PNG',
+              style: {
+                fontSize: '',
+                fontColor: '',
+                backgroundColor: '',
+                fontWeight: ''
+              }
+            },
+            {
+              text: 'The Sale is LIVE !!!!!',
+              style: {
+                fontSize: '',
+                fontColor: '',
+                backgroundColor: '',
+                fontWeight: ''
+              }
+            },
+            {
+              text: 'Hi User',
+              style: {
+                fontSize: '',
+                fontColor: '',
+                backgroundColor: '',
+                fontWeight: ''
+              }
+            },
+            {
+              text: 'The sale starts on 24th December 8am.',
+              style: {
+                fontSize: '',
+                fontColor: '',
+                backgroundColor: '',
+                fontWeight: ''
+              }
+            },
+            {
+              text: 'Be ready with your wishlist!!',
+              style: {
+                fontSize: '',
+                fontColor: '',
+                backgroundColor: '',
+                fontWeight: ''
+              }
+            },
+            {
+              text: 'Subscribe',
+              style: {
+                fontSize: '',
+                fontColor: '',
+                backgroundColor: '',
+                fontWeight: ''
+              }
+            },
+            {
+              text: 'Unsubscribe',
+              style: {
+                fontSize: '',
+                fontColor: '',
+                backgroundColor: '',
+                fontWeight: ''
+              }
             }
-          },
-          {
-            text: 'The Sale is LIVE !!!!!',
-            style: {
-              fontSize: '',
-              fontColor: '',
-              backgroundColor: '',
-              fontWeight: ''
-            }
-          },
-          {
-            text: 'Hi User',
-            style: {
-              fontSize: '',
-              fontColor: '',
-              backgroundColor: '',
-              fontWeight: ''
-            }
-          },
-          {
-            text: 'The sale starts on 24th December 8am.',
-            style: {
-              fontSize: '',
-              fontColor: '',
-              backgroundColor: '',
-              fontWeight: ''
-            }
-          },
-          {
-            text: 'Be ready with your wishlist!!',
-            style: {
-              fontSize: '',
-              fontColor: '',
-              backgroundColor: '',
-              fontWeight: ''
-            }
-          },
-          {
-            text: 'Subscribe',
-            style: {
-              fontSize: '',
-              fontColor: '',
-              backgroundColor: '',
-              fontWeight: ''
-            }
-          },
-          {
-            text: 'Unsubscribe',
-            style: {
-              fontSize: '',
-              fontColor: '',
-              backgroundColor: '',
-              fontWeight: ''
-            }
-          }
-        ]
+          ];
+          this.sections = sections;
+        }
       })
     })
   }
