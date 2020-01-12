@@ -26,3 +26,8 @@
 .drag-box {
     text-align: center;
 }
+.preview-container {
+    ::ng-deep a.button-element {
+        pointer-events: auto;
+    }
+}

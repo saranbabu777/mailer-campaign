@@ -15,6 +15,7 @@ export class DesignComponent implements OnInit {
   public rows: number[];
   public rowA: any;
   public rowB: any;
+  public mergeError: boolean;
   public icons = { image: 'image', text: 'file-text', button: 'square' };
   public elements = [
     {
@@ -133,6 +134,11 @@ export class DesignComponent implements OnInit {
         }
       }
     }
+    this.mergeError = false;/*Reset*/
+  }
+
+  resetError() {
+    this.mergeError = false;/*Reset*/
   }
 
   merge() {
@@ -149,6 +155,9 @@ export class DesignComponent implements OnInit {
       }
       this.rows.pop(); /*Pop out one row*/
       this.rowA = this.rowB = undefined;
+    } else {
+      this.mergeError = true;
     }
   }
+
 }

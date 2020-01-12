@@ -11,3 +11,6 @@
     padding: 0 40px;
     margin-bottom: 20px;
 }
+::ng-deep a.button-element {
+    pointer-events: none;
+}

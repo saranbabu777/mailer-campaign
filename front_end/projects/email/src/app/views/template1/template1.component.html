@@ -27,13 +27,15 @@
     </div>
     <div class="footer">
       <div class="notification-preferences">
-        <a class="section" [ngClass]="{'editing': index === 5}" id="base-5" [style.font-size]="sections[5].style.fontSize" [style.color]="sections[5].style.fontColor"
-          [style.background-color]="sections[5].style.backgroundColor" [style.font-weight]="sections[5].style.fontWeight" [style.text-align]="sections[5].style.textAlign">
+        <a href="{{sections[5].link}}/@@id@@" class="section" [ngClass]="{'editing': index === 5}" id="base-5" [style.font-size]="sections[5].style.fontSize"
+          [style.color]="sections[5].style.fontColor" [style.background-color]="sections[5].style.backgroundColor" [style.font-weight]="sections[5].style.fontWeight"
+          [style.text-align]="sections[5].style.textAlign">
           {{sections[5].text}}
         </a>
         <span>|</span>
-        <a class="section" [ngClass]="{'editing': index === 6}" id="base-6" [style.font-size]="sections[6].style.fontSize" [style.color]="sections[6].style.fontColor"
-          [style.background-color]="sections[6].style.backgroundColor" [style.font-weight]="sections[6].style.fontWeight" [style.text-align]="sections[6].style.textAlign">
+        <a href="{{sections[6].link}}/@@id@@" class="section" [ngClass]="{'editing': index === 6}" id="base-6" [style.font-size]="sections[6].style.fontSize"
+          [style.color]="sections[6].style.fontColor" [style.background-color]="sections[6].style.backgroundColor" [style.font-weight]="sections[6].style.fontWeight"
+          [style.text-align]="sections[6].style.textAlign">
           {{sections[6].text}}
         </a>
       </div>

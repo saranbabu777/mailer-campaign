@@ -1,4 +1,5 @@
-<a class="section" [ngClass]="{'editing': editing}" [style.font-size]="section.style.fontSize" [style.color]="section.style.fontColor"
-    [style.background-color]="section.style.backgroundColor" [style.font-weight]="section.style.fontWeight" [style.text-align]="section.style.textAlign">
+<a href="{{section.link}}/@@id@@" class="section button-element" [ngClass]="{'editing': editing}" [style.font-size]="section.style.fontSize"
+    [style.color]="section.style.fontColor" [style.background-color]="section.style.backgroundColor" [style.font-weight]="section.style.fontWeight"
+    [style.text-align]="section.style.textAlign">
     {{section.text}}
 </a>

@@ -10,22 +10,23 @@
         </div>
         <div class="merge-container">
             <mat-form-field appearance="outline" [floatLabel]="'always'">
-                <mat-label>Row</mat-label>
-                <mat-select [(ngModel)]="rowA">
+                <mat-label>Merge Start</mat-label>
+                <mat-select [(ngModel)]="rowA" (ngModelChange)="resetError()">
                     <mat-option *ngFor="let i of rows" [value]="i">
-                        {{i+1}}
+                        Row {{i+1}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline" [floatLabel]="'always'">
-                <mat-label>Row</mat-label>
-                <mat-select [(ngModel)]="rowB">
+                <mat-label>Merge End</mat-label>
+                <mat-select [(ngModel)]="rowB" (ngModelChange)="resetError()">
                     <mat-option *ngFor="let i of rows" [value]="i">
-                        {{i+1}}
+                        Row {{i+1}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <button mat-raised-button color="primary" type="button" (click)="merge()">Merge</button>
+            <mat-error *ngIf="mergeError">Unable to merge</mat-error>
         </div>
     </div>
     <div class="drag-container template-container">
