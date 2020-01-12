@@ -4,11 +4,10 @@ import { CustomMaterialModule } from 'src/app/custom-material/custom-material.mo
 import { LayoutComponent } from './layout/layout.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ LayoutComponent, LoginComponent ],
+  declarations: [ LayoutComponent ],
   imports: [
     CommonModule,
     CustomMaterialModule,

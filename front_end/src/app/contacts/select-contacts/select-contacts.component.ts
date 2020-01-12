@@ -19,10 +19,21 @@ export class SelectContactsComponent implements OnInit {
 
   ngOnInit() {
     this.contactLists = this.contactsService.getContactListNames();
+    if(!this.contactsService.previousRoute) {
+      this.router.navigate(['/contacts']);
+    }
   }
 
   onAddContacts() {
+    this.contactsService.sendTemplate = true;
     this.router.navigate(['/contacts']);
+  }
+
+  sendEmail(){
+  }
+
+  goBack() {
+    this.router.navigate([this.contactsService.previousRoute]);
   }
 
 }

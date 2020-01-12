@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class ContactsService {
 
   userLists = [];
+  previousRoute = '';
+  sendTemplate = false;
 
   constructor() { 
     const users = localStorage.getItem('users');

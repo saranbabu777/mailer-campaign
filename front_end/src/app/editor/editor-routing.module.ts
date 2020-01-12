@@ -4,6 +4,7 @@ import { EditorComponent } from 'src/app/editor/editor/editor.component';
 import { Template1Component } from './views/template1/template1.component';
 import { DesignComponent } from 'src/app/editor/design/design.component';
 import { PreviewComponent } from 'src/app/editor/preview/preview.component';
+import { UserAuthentication } from '../user-authentication/user-authentication';
 
 const routes: Routes = [
     {
@@ -18,11 +19,15 @@ const routes: Routes = [
                 path: 'design',
                 component: DesignComponent
             }
-        ]
+        ],
+        canActivate: [ UserAuthentication ],
+        data: { role: 'admin' }
     },
     {
         path: 'preview/:id',
-        component: PreviewComponent
+        component: PreviewComponent,
+        canActivate: [ UserAuthentication ],
+        data: { role: 'admin' }
     }
 ];
 

@@ -26,17 +26,13 @@ export class LayoutComponent implements OnInit {
     }
   }
 
-  onLogInSuccess() {
-    this.loggedIn = true;
-    this.username = this.userService.username;
-    localStorage.setItem('username', this.username);
-    this.router.navigate(['/dashboard']);
-  }
-
   onLogout() {
     localStorage.removeItem('username');
     localStorage.removeItem('users');
     this.loggedIn = false;
+    this.userService.loggedIn = false;
+    this.userService.username = '';
+    this.router.navigate(['/login']);
   }
 
 }

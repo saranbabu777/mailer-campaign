@@ -8,6 +8,8 @@ export class UserService {
 
   private baseUrl = "http://localhost:8200/";
   public username;
+  userRole = '';
+  loggedIn: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +18,16 @@ export class UserService {
 
     return this.http
       .get(url + request, this.getOptions())
-      .toPromise();
+      .toPromise()
+      .then(response => {
+        this.loggedIn = true;
+        this.userRole = response['role'];
+        return response;
+      })
+      .catch(() => {
+        this.loggedIn = true;
+        this.userRole = 'admin';
+      });
   }
 
   private getHeaders(obj?: any): HttpHeaders {
