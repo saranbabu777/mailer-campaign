@@ -18,12 +18,24 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const user = localStorage.getItem('username');
+    if(user){
+      this.loggedIn = true;
+      this.userService.username = user;
+      this.username = user;
+    }
   }
 
   onLogInSuccess() {
     this.loggedIn = true;
     this.username = this.userService.username;
+    localStorage.setItem('username', this.username);
     this.router.navigate(['/dashboard']);
+  }
+
+  onLogout() {
+    localStorage.removeItem('username');
+    this.loggedIn = false;
   }
 
 }
