@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { SectionProps } from 'src/app/editor/models/section-props';
 import { TemplateService } from 'src/app/editor/services/template.service';
 
@@ -14,7 +16,7 @@ export class PreviewComponent implements OnInit {
   public template: SectionProps[];
   public rows: number[];
 
-  constructor(private templateService: TemplateService) {
+  constructor(private templateService: TemplateService, private router: Router) {
     this.template = []; /*Do API Call*/
     const sections = [
       {
@@ -104,7 +106,7 @@ export class PreviewComponent implements OnInit {
     ];
     try {
       const request = JSON.parse(localStorage.getItem('request'));
-      this.template = JSON.parse(request.sections)
+      this.template = JSON.parse(request.sections);
     } catch (e) {
       /*Load sample data if no request*/
       this.template = sections;
@@ -120,8 +122,9 @@ export class PreviewComponent implements OnInit {
     this.showLoader = true;
     this.templateService.generateTemplate().then((response) => {
       this.showLoader = false;
-      console.log(response)
-    })
+      console.log(response);
+      this.router.navigate(['/contacts/select']);
+    });
   }
 
   generateRows() {
