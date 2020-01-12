@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { LookupService } from 'projects/email/src/app/services/lookup.service';
 import { ActivatedRoute } from '@angular/router';
+import { TemplateService } from 'src/app/editor/services/template.service';
 
 @Component({
   selector: 'app-template1',
@@ -11,9 +12,12 @@ export class Template1Component implements OnInit {
 
   public sections: any[];
   public index: number;
+  public showGenerateBtn: boolean;
+  public showLoader: boolean;
 
-  constructor(private lookupService: LookupService, private route: ActivatedRoute) {
+  constructor(private lookupService: LookupService, private templateService: TemplateService, private route: ActivatedRoute) {
     this.route.params.subscribe(response => {
+      this.showGenerateBtn = response.generate === '1';
       this.lookupService.getTemplate(response.id).then(response => {
         this.sections = JSON.parse(response[ 'sections' ]);
       }).catch(() => {
@@ -102,5 +106,13 @@ export class Template1Component implements OnInit {
       const idSplit = event.target.id.split('-');
       this.index = Number(idSplit[ 1 ]);
     }
+  }
+
+  generateTemplate() {
+    this.showLoader = true;
+    this.templateService.generateTemplate().then((response) => {
+      this.showLoader = false;
+      console.log(response)
+    })
   }
 }

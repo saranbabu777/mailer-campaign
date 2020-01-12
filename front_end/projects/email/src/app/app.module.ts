@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { EditorModule } from 'src/app/editor/editor.module';
 import { PreviewTemplateComponent } from 'projects/email/src/app/views/preview-template/preview-template.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { PreviewTemplateComponent } from 'projects/email/src/app/views/preview-t
     FlexLayoutModule,
     HttpClientModule,
     EditorModule,
+    AngularFontAwesomeModule,
     AppRoutingModule
   ],
   providers: [],

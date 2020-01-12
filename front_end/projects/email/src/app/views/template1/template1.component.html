@@ -40,3 +40,12 @@
     </div>
   </div>
 </div>
+<div *ngIf="showGenerateBtn">
+  <button (click)="generateTemplate()" mat-raised-button color="primary" class="generate-btn" [disabled]="showLoader">
+    <fa name="download"></fa>Generate Template
+  </button>
+  <div *ngIf="showLoader" class="loader">
+    <p>Template download is in progress...</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</div>

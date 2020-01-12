@@ -36,7 +36,7 @@ export class EditorComponent implements OnInit {
 
   ngOnInit() {
     const designView = this.router.url.split('/').indexOf('design') !== -1;
-    this.previewUrl = designView ? "/editor/preview/" : "/preview/email/template1/";
+    this.previewUrl = designView ? "/editor/preview/" : "/preview/email/template1/1/";
   }
 
   submit() {

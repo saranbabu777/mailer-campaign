@@ -6,6 +6,7 @@ import { PreviewTemplateComponent } from 'projects/email/src/app/views/preview-t
 
 const routes: Routes = [
   { path: 'email/template1/:id', component: Template1Component },
+  { path: 'email/template1/:generate/:id', component: Template1Component },
   { path: 'email/preview/:id', component: PreviewTemplateComponent }
 ];
 
