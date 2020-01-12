@@ -35,6 +35,7 @@ export class LayoutComponent implements OnInit {
 
   onLogout() {
     localStorage.removeItem('username');
+    localStorage.removeItem('users');
     this.loggedIn = false;
   }
 

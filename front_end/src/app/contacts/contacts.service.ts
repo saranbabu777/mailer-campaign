@@ -7,7 +7,10 @@ export class ContactsService {
 
   userLists = [];
 
-  constructor() { }
+  constructor() { 
+    const users = localStorage.getItem('users');
+    this.userLists = users ? JSON.parse(users) : [];
+  }
 
   getContactListNames() {
     const list = [];
@@ -34,5 +37,14 @@ export class ContactsService {
       }
       this.userLists.push(newList);
     }
+    localStorage.setItem('users', this.userLists.toString());
+  }
+
+  allContacts() {
+    let allContacts = [];
+    this.userLists.forEach(user =>{
+      allContacts = allContacts.concat(user.users);
+    });
+    return allContacts;
   }
 }
