@@ -148,6 +148,7 @@ export class DesignComponent implements OnInit {
         }
       }
       this.rows.pop(); /*Pop out one row*/
+      this.rowA = this.rowB = undefined;
     }
   }
 }
