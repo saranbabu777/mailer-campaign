@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SubscriptionService } from '../services/subscription.service';
 
 @Component({
   selector: 'app-unsubscribed',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnsubscribedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private subscriptionService: SubscriptionService) { 
+    subscriptionService.unsubscribe()
+    .then(() => {})
+    .catch(() => {});
+  }
 
   ngOnInit() {
   }
