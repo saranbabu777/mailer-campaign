@@ -19,7 +19,16 @@ export class LoginComponent implements OnInit {
 
   onLogIn() {
     this.userService.username = this.username;
-    this.userLogin.emit();
+    const request = {
+      username: this.username,
+      password: this.password
+    };
+    this.userService.login(request).then(response => {
+      this.userLogin.emit();
+    }).catch(() => {
+      this.userLogin.emit();
+    })
+    
   }
 
 }

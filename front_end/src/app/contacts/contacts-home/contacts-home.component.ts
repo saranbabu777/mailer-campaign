@@ -14,18 +14,21 @@ export class ContactsHomeComponent implements OnInit {
 
   contactLists = [];
   public contacts = [];
-  displayedColumns: string[] = ['firstName', 'lastName', 'email'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone'];
   selectedList = '';
+  showContacts = false;
 
   constructor(
     private contactsService: ContactsService,
     public dialog: MatDialog
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.contactLists = this.contactsService.getContactListNames();
+    this.contactLists.push('All');
     this.contacts = this.contactsService.userLists[0] ? this.contactsService.userLists[0].users : [];
     this.selectedList = this.contactsService.userLists[0] ? this.contactsService.userLists[0].name : '';
+    this.showContacts = this.contactLists.length > 1 ? true : false;
   }
 
   onAddContacts() {
@@ -48,8 +51,12 @@ export class ContactsHomeComponent implements OnInit {
     });
   }
 
-  updateUserList(){
-    this.contacts = this.contactsService.getContacts(this.selectedList);
+  updateUserList() {
+    if (this.selectedList === 'All') {
+      this.contacts = this.contactsService.allContacts();
+    } else {
+      this.contacts = this.contactsService.getContacts(this.selectedList);
+    }
   }
 
 }

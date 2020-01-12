@@ -124,6 +124,8 @@ export class PreviewComponent implements OnInit {
       this.showLoader = false;
       console.log(response);
       this.router.navigate(['/contacts/select']);
+    }).catch(response => {
+      this.router.navigate(['/contacts/select']);
     });
   }
 
