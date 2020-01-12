@@ -13,6 +13,8 @@ export class DesignComponent implements OnInit {
   public template: SectionProps[];
   public selectedCell: string;
   public rows: number[];
+  public rowA: any;
+  public rowB: any;
   public icons = { image: 'image', text: 'file-text', button: 'square' };
   public elements = [
     {
@@ -110,18 +112,38 @@ export class DesignComponent implements OnInit {
       }
     }
     this.selectedCell = row + '' + col;
+    if (this.rowA === undefined) {
+      this.rowA = row;
+    } else {
+      if (this.rowB === undefined) {
+        if (parseInt(row) > parseInt(this.rowA)) {
+          this.rowB = row;
+        } else if (parseInt(row) < parseInt(this.rowA)) {
+          /*Do nothing if the rows are same*/
+          let tempRow = this.rowA;
+          this.rowA = row;
+          this.rowB = tempRow;
+        }
+      } else {
+        if (parseInt(row) < parseInt(this.rowB)) {
+          this.rowA = row;
+        } else if (parseInt(row) > parseInt(this.rowB)) {
+          /*Do nothing if the rows are same*/
+          this.rowB = row;
+        }
+      }
+    }
   }
 
-  a; b;
   merge() {
-    this.a = parseInt(this.a);
-    this.b = parseInt(this.b);
-    if (this.a < this.b) {
+    this.rowA = parseInt(this.rowA);
+    this.rowB = parseInt(this.rowB);
+    if (this.rowA < this.rowB) {
       for (let i = 0; i < this.template.length; i++) {
         let t = this.template[ i ];
-        if (t.rowId === this.b) {
-          t.rowId = this.a;
-        } else if (t.rowId > this.b) {
+        if (t.rowId === this.rowB) {
+          t.rowId = this.rowA;
+        } else if (t.rowId > this.rowB) {
           t.rowId--;
         }
       }
