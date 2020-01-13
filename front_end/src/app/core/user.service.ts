@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
 
-  private baseUrl = "http://localhost:8200/";
+  private baseUrl = "http://localhost:4200/";
   public username;
   userRole = '';
   loggedIn: boolean;
@@ -14,7 +14,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(request) {
-    const url = this.getUri('login');
+    const url = this.getUri('user/');
 
     return this.http
       .get(url + request, this.getOptions())
