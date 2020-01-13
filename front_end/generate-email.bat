@@ -1,1 +1,1 @@
-npm run gen:email
+npm run gen:email-%1

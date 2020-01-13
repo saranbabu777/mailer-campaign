@@ -9,7 +9,16 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:email": "ng build --extract-css --project email && ng run email:server",
-    "gen:email": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/4"
+    "gen:email-1": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/1",
+    "gen:email-2": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/2",
+    "gen:email-3": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/3",
+    "gen:email-4": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/4",
+    "gen:email-5": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/5",
+    "gen:email-6": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/6",
+    "gen:email-7": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/7",
+    "gen:email-8": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/8",
+    "gen:email-9": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/9",
+    "gen:email-10": "angular-universalize-email -a ./dist/email -A ./dist/email-server -o dist/email /email/preview/10"
   },
   "private": true,
   "dependencies": {

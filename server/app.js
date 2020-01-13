@@ -9,7 +9,11 @@ app.use(cors())
 
 /*RUN build:email before calling api*/
 app.get('/email', (req, res) => {
-	child_process.exec('cd.. && cd.. && cd mailer-campaign && cd front_end && generate-email.bat', function (error, stdout, stderr) {
+	let generateEmail = [];
+	for (let i = 1; i <= 10; i++) {
+		generateEmail.push(' generate-email.bat ' + i);
+	}
+	child_process.exec('cd.. && cd.. && cd mailer-campaign && cd front_end && ' + generateEmail.join(' && '), function (error, stdout, stderr) {
 		console.log('gen success!')
 		res.json({ msg: 'Email generated successfully!' })
 	});
