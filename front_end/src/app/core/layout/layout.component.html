@@ -1,7 +1,7 @@
 <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
-  <div>
+  <div *ngIf="userService.loggedIn">
     <div class="brand"></div>
-    <div class="menu-items" fxLayout="row" fxLayoutGap="20px" *ngIf="userService.loggedIn">
+    <div class="menu-items" fxLayout="row" fxLayoutGap="20px">
       <a routerLink="/dashboard" routerLinkActive="active-link" class="menu">Dashboard</a>
       <a routerLink="/editor/basic" routerLinkActive="active-link" class="menu">Editor</a>
       <a routerLink="/editor/design" routerLinkActive="active-link" class="menu"

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ContactsService } from '../contacts.service';
+import { TemplateService } from 'src/app/editor/services/template.service';
 
 @Component({
   selector: 'app-select-contacts',
@@ -11,10 +12,14 @@ import { ContactsService } from '../contacts.service';
 export class SelectContactsComponent implements OnInit {
 
   public contactLists = [];
+  public campaignName = '';
+  public mailSubject = '';
+  public list = '';
 
   constructor(
     private contactsService: ContactsService,
-    private router: Router
+    private router: Router,
+    private templateService: TemplateService
   ) { }
 
   ngOnInit() {
@@ -30,6 +35,18 @@ export class SelectContactsComponent implements OnInit {
   }
 
   sendEmail(){
+    const request = {
+      campaignName: this.campaignName,
+      mailSubject: this.mailSubject,
+      listName: this.list,
+      createdBy: 'arvind'
+    }
+    this.templateService.sendMail(request).then(response => {
+      // this.router.navigate([ this.previewUrl + response[ 'templateId' ] ]);
+    }).catch(() => {
+      localStorage.setItem('request', JSON.stringify(request));
+      // this.router.navigate([ this.previewUrl + '0' ]);
+    });
   }
 
   goBack() {

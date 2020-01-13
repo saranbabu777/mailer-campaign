@@ -1,7 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { LookupService } from 'projects/email/src/app/services/lookup.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TemplateService } from 'src/app/editor/services/template.service';
+import { ContactsService } from 'src/app/contacts/contacts.service';
 
 @Component({
   selector: 'app-template1',
@@ -15,7 +16,8 @@ export class Template1Component implements OnInit {
   public showGenerateBtn: boolean;
   public showLoader: boolean;
 
-  constructor(private lookupService: LookupService, private templateService: TemplateService, private route: ActivatedRoute) {
+  constructor(private lookupService: LookupService, private templateService: TemplateService, 
+    private route: ActivatedRoute, private contactsService: ContactsService, private router: Router ) {
     this.route.params.subscribe(response => {
       this.showGenerateBtn = response.generate === '1';
       this.lookupService.getTemplate(response.id).then(response => {
@@ -113,6 +115,9 @@ export class Template1Component implements OnInit {
     this.templateService.generateTemplate().then((response) => {
       this.showLoader = false;
       console.log(response)
-    })
+    }).catch(response => {
+      this.contactsService.previousRoute = this.router.url;
+      this.router.navigate(['/contacts/select']);
+    });
   }
 }
