@@ -12,7 +12,7 @@ const routes: Routes = [
         component: EditorComponent,
         children: [
             {
-                path: 'basic',
+                path: 'basic/:id',
                 component: Template1Component,
                 canActivate: [ UserAuthentication ]
             },

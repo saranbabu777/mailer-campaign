@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { SectionProps } from 'src/app/editor/models/section-props';
 import { TemplatePlaceholdersService } from 'src/app/editor/services/template-placeholders.service';
+import { TemplateService } from '../../services/template.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-template1',
@@ -12,7 +14,7 @@ export class Template1Component implements OnInit {
   public sections: SectionProps[];
   public index: number;
 
-  constructor(private templatePlaceholdersService: TemplatePlaceholdersService) {
+  constructor(private templatePlaceholdersService: TemplatePlaceholdersService, private templateService:TemplateService, private route: ActivatedRoute) {
     const sections = [
       {
         type: 'image',
@@ -93,7 +95,15 @@ export class Template1Component implements OnInit {
     this.templatePlaceholdersService.index.next(this.index);
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.route.params.subscribe(response => {
+      this.templateService.getTemplate(response.id).then(response => {
+        this.sections = JSON.parse(response['sections']);
+        console.log(this.sections);
+      }).catch(() => { 
+      });
+  });
+}
 
   @HostListener('click', [ '$event' ])
   onClick(event): void {

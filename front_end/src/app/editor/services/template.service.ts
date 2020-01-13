@@ -24,11 +24,9 @@ export class TemplateService {
   getTemplate(request) {
     const url = this.getUri('emails/getTemplate/');
 
-    this.http
+    return this.http
       .get(url + request, this.getOptions())
-      .toPromise().then(response => {
-        console.log('json output ', response)
-      })
+      .toPromise();
   }
 
   generateTemplate() {
