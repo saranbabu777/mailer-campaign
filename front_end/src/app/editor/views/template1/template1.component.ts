@@ -14,7 +14,7 @@ export class Template1Component implements OnInit {
   public sections: SectionProps[];
   public index: number;
 
-  constructor(private templatePlaceholdersService: TemplatePlaceholdersService, private templateService:TemplateService, private route: ActivatedRoute) {
+  constructor(private templatePlaceholdersService: TemplatePlaceholdersService, private templateService: TemplateService, private route: ActivatedRoute) {
     const sections = [
       {
         type: 'image',
@@ -95,15 +95,16 @@ export class Template1Component implements OnInit {
     this.templatePlaceholdersService.index.next(this.index);
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.route.params.subscribe(response => {
+      this.templateService.fileName = "email-template1-" + response.id;
       this.templateService.getTemplate(response.id).then(response => {
-        this.sections = JSON.parse(response['sections']);
+        this.sections = JSON.parse(response[ 'sections' ]);
         console.log(this.sections);
-      }).catch(() => { 
+      }).catch(() => {
       });
-  });
-}
+    });
+  }
 
   @HostListener('click', [ '$event' ])
   onClick(event): void {

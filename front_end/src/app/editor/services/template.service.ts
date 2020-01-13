@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class TemplateService {
 
   private baseUrl = "http://localhost:8200/";
+  public fileName: string;
 
   constructor(private http: HttpClient) {
 
@@ -37,6 +38,7 @@ export class TemplateService {
   }
 
   sendMail(request) {
+    request.fileName = this.fileName;
     const url = this.getUri('emails/sendMail');
 
     return this.http
@@ -50,7 +52,7 @@ export class TemplateService {
 
     for (const h in obj || {}) {
       if (obj.hasOwnProperty(h)) {
-        headers.append(h, obj[h]);
+        headers.append(h, obj[ h ]);
       }
     }
     return headers;

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { SectionProps } from 'src/app/editor/models/section-props';
 import { TemplateService } from 'src/app/editor/services/template.service';
@@ -17,7 +17,7 @@ export class PreviewComponent implements OnInit {
   public template: SectionProps[];
   public rows: number[];
 
-  constructor(private templateService: TemplateService, private router: Router,
+  constructor(private templateService: TemplateService, private router: Router, private route: ActivatedRoute,
     private contactsService: ContactsService) {
     this.template = []; /*Do API Call*/
     const sections = [
@@ -106,6 +106,9 @@ export class PreviewComponent implements OnInit {
         index: 6
       }
     ];
+    this.route.params.subscribe(response => {
+      this.templateService.fileName = "email-preview-" + response.id;
+    });
     try {
       const request = JSON.parse(localStorage.getItem('request'));
       this.template = JSON.parse(request.sections);
