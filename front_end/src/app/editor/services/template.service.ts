@@ -38,13 +38,21 @@ export class TemplateService {
       .toPromise();
   }
 
+  sendMail(request) {
+    const url = this.getUri('emails/sendMail');
+
+    return this.http
+      .post(url, request, this.getOptions())
+      .toPromise();
+  }
+
   private getHeaders(obj?: any): HttpHeaders {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
     for (const h in obj || {}) {
       if (obj.hasOwnProperty(h)) {
-        headers.append(h, obj[ h ]);
+        headers.append(h, obj[h]);
       }
     }
     return headers;

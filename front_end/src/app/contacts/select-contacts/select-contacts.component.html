@@ -1,13 +1,26 @@
-<div class="back-btn-cont">
+<div class="back-btn-cont" fxLayout="row" fxLayoutAlign="space-between">
   <mat-icon class="back-btn" (click)="goBack()">keyboard_arrow_left</mat-icon>
+  <button mat-raised-button color="primary" (click)="onAddContacts()" class="add-contacts"
+    *ngIf="contactLists.length > 0">
+    <mat-icon>person_add</mat-icon>
+    Add more contacts
+  </button>
 </div>
 
-<div class="recepient-list">
+<div class="recepient-list" fxLayout="row" fxLayoutAlign="center">
 
-  <div fxLayout="row" fxLayoutGap="40px" *ngIf="contactLists.length > 0; else add_contacts">
-    <mat-form-field>
+  <div fxFlex="65%" fxLayout="column" fxLayoutGap="40px" *ngIf="contactLists.length > 0; else add_contacts">
+    <mat-form-field appearance="outline" [floatLabel]="'always'">
+      <mat-label>Campaign Name</mat-label>
+      <textarea rows="1" [(ngModel)]="campaignName" matInput placeholder="Provide details here..."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [floatLabel]="'always'">
+      <mat-label>Campaign Subject</mat-label>
+      <textarea rows="1" [(ngModel)]="mailSubject" matInput placeholder="Provide mail subject here..."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [floatLabel]="'always'">
       <mat-label>Select recepient list</mat-label>
-      <mat-select [(ngModel)]="recepientList" multiple>
+      <mat-select [(ngModel)]="list" multiple>
         <mat-option *ngFor="let list of contactLists" [value]="list">{{list}}</mat-option>
       </mat-select>
     </mat-form-field>
