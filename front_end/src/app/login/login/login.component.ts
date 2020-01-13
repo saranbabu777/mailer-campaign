@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   @Output() userLogin = new EventEmitter();
   public username;
   public password;
+  public error;
 
   constructor(
     private userService: UserService,
@@ -27,10 +28,14 @@ export class LoginComponent implements OnInit {
       username: this.username,
       password: this.password
     };
-    this.userService.login(request).then(response => {
-      this.router.navigate(['/dashboard']);
+    this.userService.login(this.username).then(response => {
+      if(response['password'] == this.password){
+        this.router.navigate(['/dashboard']);
+      }else{
+        this.error = true;
+      }
     }).catch(() => {
-      this.router.navigate(['/dashboard']);
+      this.error = true;
     })
     
   }

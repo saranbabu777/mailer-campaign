@@ -21,7 +21,7 @@ export class UserService {
       .toPromise()
       .then(response => {
         this.loggedIn = true;
-        this.userRole = response[ 'role' ];
+        this.userRole = response[ 'userRole' ];
         return response;
       })
       .catch(() => {

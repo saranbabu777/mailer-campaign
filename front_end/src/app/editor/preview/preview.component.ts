@@ -108,6 +108,7 @@ export class PreviewComponent implements OnInit {
     ];
     this.route.params.subscribe(response => {
       this.templateService.fileName = "email-preview-" + response.id;
+      this.templateService.templateId =  response.id;
     });
     try {
       const request = JSON.parse(localStorage.getItem('request'));

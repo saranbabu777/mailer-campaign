@@ -98,6 +98,7 @@ export class Template1Component implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(response => {
       this.templateService.fileName = "email-template1-" + response.id;
+      this.templateService.templateId = response.id;
       this.templateService.getTemplate(response.id).then(response => {
         this.sections = JSON.parse(response[ 'sections' ]);
         console.log(this.sections);

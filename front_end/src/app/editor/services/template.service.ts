@@ -9,6 +9,7 @@ export class TemplateService {
 
   private baseUrl = "http://localhost:8200/";
   public fileName: string;
+  public templateId: any;
 
   constructor(private http: HttpClient) {
 
@@ -39,6 +40,7 @@ export class TemplateService {
 
   sendMail(request) {
     request.fileName = this.fileName;
+    request.templateId = this.templateId;
     const url = this.getUri('emails/sendMail');
 
     return this.http
