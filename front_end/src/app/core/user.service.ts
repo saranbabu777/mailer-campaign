@@ -26,7 +26,7 @@ export class UserService {
       })
       .catch(() => {
         this.loggedIn = true;
-        this.userRole = 'admin';
+        this.userRole = 'manager';
       });
   }
 

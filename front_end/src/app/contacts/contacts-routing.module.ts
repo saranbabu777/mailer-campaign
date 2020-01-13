@@ -9,8 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: ContactsHomeComponent,
-    canActivate: [ UserAuthentication ],
-    data: { role: 'admin' }
+    canActivate: [ UserAuthentication ]
   },
   {
     path: 'select',

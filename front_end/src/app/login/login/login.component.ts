@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(request).then(response => {
       this.router.navigate(['/dashboard']);
     }).catch(() => {
-      this.userLogin.emit();
+      this.router.navigate(['/dashboard']);
     })
     
   }

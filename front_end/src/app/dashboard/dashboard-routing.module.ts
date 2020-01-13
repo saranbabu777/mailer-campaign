@@ -8,8 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [ UserAuthentication ],
-    data: { role: 'admin' }
+    canActivate: [ UserAuthentication ]
   }
 ];
 

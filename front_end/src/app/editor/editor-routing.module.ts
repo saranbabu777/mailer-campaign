@@ -13,21 +13,22 @@ const routes: Routes = [
         children: [
             {
                 path: 'basic',
-                component: Template1Component
+                component: Template1Component,
+                canActivate: [ UserAuthentication ]
             },
             {
                 path: 'design',
-                component: DesignComponent
+                component: DesignComponent,
+                canActivate: [ UserAuthentication ],
+                data: { screen: 'design' }
             }
         ],
-        canActivate: [ UserAuthentication ],
-        data: { role: 'admin' }
+        canActivate: [ UserAuthentication ]
     },
     {
         path: 'preview/:id',
         component: PreviewComponent,
-        canActivate: [ UserAuthentication ],
-        data: { role: 'admin' }
+        canActivate: [ UserAuthentication ]
     }
 ];
 

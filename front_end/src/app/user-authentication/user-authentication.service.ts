@@ -10,7 +10,7 @@ export class UserAuthenticationService {
   constructor(
     private userService: UserService,
     private router: Router
-    ) { }
+  ) { }
 
   canActivate(id: string, data: any): Promise<boolean> {
     return new Promise((resolve, reject) => {
@@ -18,11 +18,12 @@ export class UserAuthenticationService {
       if (typeof data !== 'undefined' && data.isPublic) {
         return resolve(true);
       }
-      if ((data && data.role && this.userService.userRole === data.role) ||
-        (!data && this.userService.loggedIn)) {
+      if ((data && data.screen && (data.screen === 'design' && (
+        this.userService.userRole === 'admin' || this.userService.userRole === 'developer'))) ||
+        ((!data || !data.screen) && this.userService.loggedIn)) {
         return resolve(true);
-      } 
-      if(!this.userService.loggedIn){
+      }
+      if (!this.userService.loggedIn) {
         this.router.navigate(['/login']);
       }
     });
