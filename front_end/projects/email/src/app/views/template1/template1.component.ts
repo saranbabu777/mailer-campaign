@@ -16,8 +16,8 @@ export class Template1Component implements OnInit {
   public showGenerateBtn: boolean;
   public showLoader: boolean;
 
-  constructor(private lookupService: LookupService, private templateService: TemplateService, 
-    private route: ActivatedRoute, private contactsService: ContactsService, private router: Router ) {
+  constructor(private lookupService: LookupService, private templateService: TemplateService,
+    private route: ActivatedRoute, private contactsService: ContactsService, private router: Router) {
     this.route.params.subscribe(response => {
       this.showGenerateBtn = response.generate === '1';
       this.lookupService.getTemplate(response.id).then(response => {
@@ -113,11 +113,13 @@ export class Template1Component implements OnInit {
   generateTemplate() {
     this.showLoader = true;
     this.templateService.generateTemplate().then((response) => {
+      this.contactsService.previousRoute = this.router.url;
+      this.router.navigate([ '/contacts/select' ]);
       this.showLoader = false;
       console.log(response)
     }).catch(response => {
       this.contactsService.previousRoute = this.router.url;
-      this.router.navigate(['/contacts/select']);
+      this.router.navigate([ '/contacts/select' ]);
     });
   }
 }
