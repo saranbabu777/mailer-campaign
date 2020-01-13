@@ -29,8 +29,8 @@ export class TemplateService {
       .toPromise();
   }
 
-  generateTemplate() {
-    const url = "http://localhost:3000/email";
+  generateTemplate(design?: boolean) {
+    const url = design ? "http://localhost:3000/new-email" : "http://localhost:3000/email";
     return this.http
       .get(url)
       .toPromise();
