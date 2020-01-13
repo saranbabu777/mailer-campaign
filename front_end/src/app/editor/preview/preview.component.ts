@@ -122,14 +122,14 @@ export class PreviewComponent implements OnInit {
 
   generateTemplate() {
     this.showLoader = true;
-    this.templateService.generateTemplate().then((response) => {
+    this.templateService.generateTemplate(true).then((response) => {
       this.showLoader = false;
       console.log(response);
       this.contactsService.previousRoute = this.router.url;
-      this.router.navigate(['/contacts/select']);
+      this.router.navigate([ '/contacts/select' ]);
     }).catch(response => {
       this.contactsService.previousRoute = this.router.url;
-      this.router.navigate(['/contacts/select']);
+      this.router.navigate([ '/contacts/select' ]);
     });
   }
 

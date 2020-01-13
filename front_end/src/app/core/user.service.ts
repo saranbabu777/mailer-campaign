@@ -21,12 +21,12 @@ export class UserService {
       .toPromise()
       .then(response => {
         this.loggedIn = true;
-        this.userRole = response['role'];
+        this.userRole = response[ 'role' ];
         return response;
       })
       .catch(() => {
         this.loggedIn = true;
-        this.userRole = 'manager';
+        this.userRole = 'developer';
       });
   }
 
@@ -36,7 +36,7 @@ export class UserService {
 
     for (const h in obj || {}) {
       if (obj.hasOwnProperty(h)) {
-        headers.append(h, obj[h]);
+        headers.append(h, obj[ h ]);
       }
     }
     return headers;
