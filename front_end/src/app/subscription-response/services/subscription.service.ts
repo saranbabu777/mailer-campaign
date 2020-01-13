@@ -1,34 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class SubscriptionService {
 
-  private baseUrl = "http://localhost:4200/";
-  public username;
-  userRole = '';
-  loggedIn: boolean;
+  private baseUrl = "http://localhost:8200/";
 
   constructor(private http: HttpClient) { }
 
-  login(request) {
-    const url = this.getUri('user/');
+  subscribe() {
+    const url = this.getUri('subscribe');
 
     return this.http
-      .get(url + request, this.getOptions())
+      .get(url, this.getOptions())
       .toPromise()
-      .then(response => {
-        this.loggedIn = true;
-        this.userRole = response['role'];
-        return response;
-      })
-      .catch(() => {
-        this.loggedIn = true;
-        this.userRole = 'manager';
-      });
+      .then(() => { })
+      .catch(() => { });
   }
+
+  unsubscribe() {
+    const url = this.getUri('unsubscribe');
+
+    return this.http
+      .get(url, this.getOptions())
+      .toPromise()
+      .then(() => { })
+      .catch(() => { });
+  }
+
 
   private getHeaders(obj?: any): HttpHeaders {
     const headers = new HttpHeaders();

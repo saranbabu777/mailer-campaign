@@ -1,9 +1,19 @@
 .recepient-list {
-  margin: 50px;
+  margin: 30px 50px;
   .add-contacts {
     width: 150px;
   }
   .send-btn {
     height: 45px;
+  }
+}
+.back-btn-cont {
+  padding-top: 10px;
+  padding-left: 10px;
+  border-bottom: solid 1px #dfdfdf;
+  .back-btn {
+    font-size: 40px;
+    color: #044a75;
+    cursor: pointer;
   }
 }

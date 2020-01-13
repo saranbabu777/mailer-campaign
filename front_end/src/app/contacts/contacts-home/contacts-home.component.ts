@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ContactsService } from '../contacts.service';
 import { AddContactsComponent } from '../add-contacts/add-contacts.component';
 import { ImportContactsComponent } from '../import-contacts/import-contacts.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contacts-home',
@@ -17,13 +18,16 @@ export class ContactsHomeComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone'];
   selectedList = '';
   showContacts = false;
+  sendTemplate = false;
 
   constructor(
     private contactsService: ContactsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.sendTemplate = this.contactsService.sendTemplate;
     this.contactLists = this.contactsService.getContactListNames();
     this.contactLists.push('All');
     this.contacts = this.contactsService.userLists[0] ? this.contactsService.userLists[0].users : [];
@@ -57,6 +61,10 @@ export class ContactsHomeComponent implements OnInit {
     } else {
       this.contacts = this.contactsService.getContacts(this.selectedList);
     }
+  }
+
+  onSendEmail() {
+    this.router.navigate(['/contacts/select']);
   }
 
 }

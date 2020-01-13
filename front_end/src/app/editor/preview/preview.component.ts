@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { SectionProps } from 'src/app/editor/models/section-props';
 import { TemplateService } from 'src/app/editor/services/template.service';
+import { ContactsService } from 'src/app/contacts/contacts.service';
 
 @Component({
   selector: 'app-preview',
@@ -16,7 +17,8 @@ export class PreviewComponent implements OnInit {
   public template: SectionProps[];
   public rows: number[];
 
-  constructor(private templateService: TemplateService, private router: Router) {
+  constructor(private templateService: TemplateService, private router: Router,
+    private contactsService: ContactsService) {
     this.template = []; /*Do API Call*/
     const sections = [
       {
@@ -123,8 +125,10 @@ export class PreviewComponent implements OnInit {
     this.templateService.generateTemplate().then((response) => {
       this.showLoader = false;
       console.log(response);
+      this.contactsService.previousRoute = this.router.url;
       this.router.navigate(['/contacts/select']);
     }).catch(response => {
+      this.contactsService.previousRoute = this.router.url;
       this.router.navigate(['/contacts/select']);
     });
   }

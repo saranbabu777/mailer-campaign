@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   {
     path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
@@ -18,6 +19,19 @@ const routes: Routes = [
   {
     path: 'contacts',
     loadChildren: './contacts/contacts.module#ContactsModule'
+  },
+  {
+    path: 'subscription',
+    loadChildren: './subscription-response/subscription-response.module#SubscriptionResponseModule'
+  },
+  {
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule'
+  },
+  {
+    path: '**', 
+    redirectTo: '/dashboard', 
+    pathMatch: 'full'
   }
 ];
 

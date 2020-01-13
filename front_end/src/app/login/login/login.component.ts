@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/core/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ export class LoginComponent implements OnInit {
   public username;
   public password;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
   }
@@ -24,9 +28,9 @@ export class LoginComponent implements OnInit {
       password: this.password
     };
     this.userService.login(request).then(response => {
-      this.userLogin.emit();
+      this.router.navigate(['/dashboard']);
     }).catch(() => {
-      this.userLogin.emit();
+      this.router.navigate(['/dashboard']);
     })
     
   }

@@ -7,6 +7,8 @@ import { CoreModule } from 'src/app/core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailSharedModule } from 'projects/email/src/app/app.module';
+import { UserAuthenticationService } from './user-authentication/user-authentication.service';
+import { UserAuthenticationModule } from './user-authentication/user-authentication.module';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,11 @@ import { EmailSharedModule } from 'projects/email/src/app/app.module';
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
+    UserAuthenticationModule,
     EmailSharedModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserAuthenticationService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
